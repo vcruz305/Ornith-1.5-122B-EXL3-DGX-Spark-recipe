@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ornith-1.5-122B EXL3 | DGX Spark Recipe Overview</title>
+<meta name="description" content="Serving overview for vcruz305/Ornith-1.5-122B-EXL3-SAGE-2.58bpw on one NVIDIA DGX Spark (GB10): 41 GiB footprint, 48/48 cooperative MoE, and 262,144 context on vLLM 0.32.0 + vllm-exl3.">
+<meta name="theme-color" content="#040712">
+<style>
+:root{color-scheme:dark;--ink:#edf4ff;--muted:#9baccc;--edge:#314563;--cyan:#4de7ff;--mint:#7ff4ca;--violet:#a78bfa;--gold:#ffd166;--red:#ff6b86;--bg:#03060d}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+#app{position:fixed;inset:0;overflow:hidden;background:radial-gradient(circle at 14% 8%,#113061 0,#07101f 30%,#02040a 74%)}
+#frame{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);overflow:hidden;box-shadow:0 24px 110px #000c;border:1px solid #243959;border-radius:18px}
+canvas{display:block;width:100%;height:100%;background:#07101f}
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="frame"><canvas id="card" width="1920" height="1080" role="img" aria-label="Ornith-1.5-122B EXL3 on NVIDIA DGX Spark overview.">Canvas required.</canvas></div>
+</div>
+<script>
+(()=>{
+const W=1920,H=1080,names=['overview','speed','context','scale','cache','revision','engines'];
+const app=document.getElementById('app'),frame=document.getElementById('frame'),canvas=document.getElementById('card'),ctx=canvas.getContext('2d');
+let state={scene:0,clean:false};
+function layout(){const vw=app.clientWidth||innerWidth,vh=app.clientHeight||innerHeight;const scale=Math.max(.06,Math.min((vw-18)/W,(vh-18)/H));frame.style.width=(W*scale)+'px';frame.style.height=(H*scale)+'px';}
+function draw(scene=0){
+  ctx.fillStyle='#06101f';ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='#4de7ff';ctx.font='800 22px system-ui';ctx.fillText('ORNITH-1.5-122B-EXL3-SAGE-2.58BPW · NVIDIA DGX SPARK (GB10)',84,96);
+  ctx.fillStyle='#f4f8ff';ctx.font='900 64px system-ui';ctx.fillText('Ornith-1.5-122B EXL3 Recipe ('+names[scene]+')',84,172);
+  ctx.fillStyle='#7ff4ca';ctx.font='600 28px system-ui';ctx.fillText('41.00 GiB LM weights · 48/48 fused cooperative MoE · 262,144 context · vLLM 0.32.0 + vllm-exl3',84,230);
+}
+window.benchmarkStudio={render:(i)=>{state.scene=i;draw(i)},clean:(v)=>{state.clean=v;layout()},sceneNames:names};
+addEventListener('resize',layout);layout();draw(0);
+})();
+</script>
+</body>
+</html>
